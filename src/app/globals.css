@@ -2,20 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer base {
+   :root {
+      --text-primary-white: #fafafa;
+      --text-primary-black: #16191f;
+      --text-primary-blue: #0073bb;
+      --text-primary-error: #d13212;
+      --text-secondary-black: #545b64;
+      --text-secondary-white: #545b64;
+      --button-primary: #ff9900;
+      --button-secondary: #ffffff;
+      --button-hover-primary: #ec7211;
+      --button-hover-secondary: #f0f0f0;
+      --button-primary-border-color: #513000;
+      --button-secondary-border-color: #545B64;
+   }
+
+   .dark {
+      --background: #16191f;
+      --foreground: #eaeded;
+      --text-primary-white: #eaeded;
+      --text-primary-black: #16191f;
+      --text-primary-blue: #44b9d6;
+      --text-primary-error: #ff5d64;
+      --text-secondary-black: #d5dbdb;
+      --text-secondary-white: #d5dbdb;
+      --button-primary: #ff9900;
+      --button-secondary: #2a2e33;
+      --button-hover-primary: #ec7211;
+      --button-hover-secondary: #21252c;
+      --button-primary-border-color: #513000;
+      --button-secondary-border-color: #879596;
+      --button-secondary-border-color-hover: #aab7b8;
+   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@layer base {
+   body {
+      @apply bg-background text-foreground tracking-[0.01em];
+   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.font-regular {
+   font-family: var(--font-ember-rg), sans-serif;
+}
+
+.font-medium {
+   font-family: var(--font-ember-medium), sans-serif;
+}
+
+.font-bold {
+   font-family: var(--font-ember-bd), sans-serif;
+}
+
+.font-headline {
+   font-family: var(--font-ember-he), sans-serif;
+}
+
+.font-thin {
+   font-family: var(--font-ember-th), sans-serif;
+}
+
+.font-light {
+   font-family: var(--font-ember-lt), sans-serif;
+}
+
+.button {
+   @apply font-bold cursor-pointer tracking-[0.01em]
+}
+
+.button-primary {
+   background-color: var(--button-primary);
+   @apply text-[var(--text-primary-black)] hover:bg-[var(--button-hover-primary)] border-none;
+}
+
+.button-secondary {
+   background-color: var(--button-secondary);
+   @apply border border-[var(--button-secondary-border-color)] hover:border-[var(--button-secondary-border-color-hover)] dark:text-[var(--text-secondary-white)] dark:hover:text-[var(--text-primary-white)] text-[var(--text-secondary-black)] hover:text-[var(--text-primary-black)] hover:bg-[var(--button-hover-secondary)];
 }
