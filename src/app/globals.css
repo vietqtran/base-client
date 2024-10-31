@@ -80,3 +80,9 @@
    background-color: var(--button-secondary);
    @apply border border-[var(--button-secondary-border-color)] hover:border-[var(--button-secondary-border-color-hover)] dark:text-[var(--text-secondary-white)] dark:hover:text-[var(--text-primary-white)] text-[var(--text-secondary-black)] hover:text-[var(--text-primary-black)] hover:bg-[var(--button-hover-secondary)];
 }
+
+.bg-auth {
+   background: url('/images/auth/background-left.png') 0 100% no-repeat, url('/images/auth/background-right.png') 100% 100% no-repeat;
+      background-attachment: fixed;
+      background-color: #fafafa;
+}
