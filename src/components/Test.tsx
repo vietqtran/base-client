@@ -4,7 +4,7 @@ import PlusIcon from '@/components/icons/PlusIcon'
 import { useTheme } from 'next-themes'
 
 const Test = () => {
-    const { resolvedTheme, setTheme } = useTheme()
+   const { resolvedTheme, setTheme } = useTheme()
    return (
       <div className="flex gap-2 p-10">
          <h1 className="~text-base/3xl">Viet deptrai</h1>

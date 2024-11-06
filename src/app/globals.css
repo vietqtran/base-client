@@ -15,7 +15,7 @@
       --button-hover-primary: #ec7211;
       --button-hover-secondary: #f0f0f0;
       --button-primary-border-color: #513000;
-      --button-secondary-border-color: #545B64;
+      --button-secondary-border-color: #545b64;
    }
 
    .dark {
@@ -43,6 +43,12 @@
    }
 }
 
+* {
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   text-rendering: optimizeLegibility;
+}
+
 .font-regular {
    font-family: var(--font-ember-rg), sans-serif;
 }
@@ -68,7 +74,7 @@
 }
 
 .button {
-   @apply font-bold cursor-pointer tracking-[0.01em]
+   @apply font-bold cursor-pointer tracking-[0.01em];
 }
 
 .button-primary {
@@ -82,7 +88,15 @@
 }
 
 .bg-auth {
-   background: url('/images/auth/background-left.png') 0 100% no-repeat, url('/images/auth/background-right.png') 100% 100% no-repeat;
-      background-attachment: fixed;
-      background-color: #fafafa;
+   background:
+      url('/images/auth/background-left.png') 0 100% no-repeat,
+      url('/images/auth/background-right.png') 100% 100% no-repeat;
+   background-attachment: fixed;
+   background-color: #fafafa;
+}
+
+.form-shadow {
+   box-shadow:
+      rgba(0, 0, 0, 0.12) 0px 1px 3px,
+      rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }

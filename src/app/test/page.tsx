@@ -37,7 +37,7 @@ export default function Home() {
       })
 
       socket.on('userCreated', (user: User) => {
-         console.log('User created:', user);
+         console.log('User created:', user)
          setText(JSON.stringify(user, null, 2))
          if (
             'Notification' in window &&

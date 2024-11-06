@@ -21,6 +21,12 @@ const config: Config = {
                secondary: 'var(--button-secondary)',
                'hover-primary': 'var(--button-hover-primary)',
                'hover-secondary': 'var(--button-hover-secondary)'
+            },
+            primary: {
+               white: 'var(--text-primary-white)',
+               black: 'var(--text-primary-black)',
+               blue: 'var(--text-primary-blue)',
+               error: 'var(--text-primary-error)'
             }
          },
          textColor: {
