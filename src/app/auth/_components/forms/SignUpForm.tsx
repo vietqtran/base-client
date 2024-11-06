@@ -18,7 +18,8 @@ const SignInSchema = z
       username: z
          .string()
          .min(1, { message: 'Username is required' })
-         .max(50, { message: 'Username is too long' }),
+         .min(3, { message: 'Username must be at least 3 characters' })
+         .max(50, { message: 'Username is over 50 characters' }),
       password: z.string().min(1, { message: 'Password is required' }),
       confirmPassword: z
          .string()
@@ -86,6 +87,34 @@ const SignUpForm = () => {
                            <ErrorMessageIcon />
                            <span className="text-xs text-primary-error">
                               {errors.email?.message}
+                           </span>
+                        </div>
+                     )}
+                  </div>
+
+                  <div className="relative flex flex-col">
+                     <label className="mb-1.5 w-fit text-sm" htmlFor="username">
+                        Username
+                     </label>
+                     <div className="relative w-full">
+                        {errors.username && (
+                           <div className="absolute inset-y-0 left-0 h-full w-1 bg-primary-error"></div>
+                        )}
+                        <input
+                           className={twMerge(
+                              'h-8 border w-full border-neutral-800 px-2 text-sm outline-none focus:border-[#0073bb] focus:ring-1 focus:ring-[#0073bb]',
+                              errors.username &&
+                                 'border-primary-error focus:border-primary-error focus:ring-primary-error'
+                           )}
+                           id="username"
+                           {...register('username')}
+                        />
+                     </div>
+                     {errors.username && (
+                        <div className="mt-1 flex items-center gap-1">
+                           <ErrorMessageIcon />
+                           <span className="text-xs text-primary-error">
+                              {errors.username?.message}
                            </span>
                         </div>
                      )}
