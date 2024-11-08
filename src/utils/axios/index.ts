@@ -13,7 +13,7 @@ interface RetryableRequest extends InternalAxiosRequestConfig {
    _retry?: boolean
 }
 
-const authPaths = ['/sign-in', '/sign-up']
+const authPaths = ['/auth/sign-in', '/auth/sign-up']
 
 const getTokens = (): Tokens | null => {
    if (typeof window !== 'undefined') {
@@ -76,7 +76,7 @@ axiosInstance.interceptors.response.use(
                localStorage.removeItem('auth-storage')
                localStorage.removeItem('tokens')
                if (!authPaths.includes(window.location.pathname)) {
-                  window.location.href = '/sign-in'
+                  window.location.href = '/auth/sign-in'
                }
                return Promise.reject(
                   new Error('Failed to refresh token: ' + refreshError)

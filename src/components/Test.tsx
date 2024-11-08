@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import CommonButton from '@/components/common/Button'
 import PlusIcon from '@/components/icons/PlusIcon'

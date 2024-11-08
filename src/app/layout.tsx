@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
-import { ThemeProvider } from '@/components/providers/ThemeProvider'
 
 const emberBd = localFont({
    src: './fonts/Ember_Bd.ttf',
@@ -54,9 +53,7 @@ export default function RootLayout({
          <body
             className={`${emberBd.variable} ${emberHe.variable} ${emberLt.variable} ${emberRg.variable} ${emberTh.variable} ${emberMedium.variable} antialiased font-regular`}
          >
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-               {children}
-            </ThemeProvider>
+            {children}
          </body>
       </html>
    )

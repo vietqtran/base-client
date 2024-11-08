@@ -16,6 +16,8 @@
       --button-hover-secondary: #f0f0f0;
       --button-primary-border-color: #513000;
       --button-secondary-border-color: #545b64;
+      --red-primary: #d13212;
+      --red-background: #fdf3f1;
    }
 
    .dark {
@@ -34,6 +36,8 @@
       --button-primary-border-color: #513000;
       --button-secondary-border-color: #879596;
       --button-secondary-border-color-hover: #aab7b8;
+      --red-primary: #ff5d64;
+      --red-background: #fdf3f1;
    }
 }
 

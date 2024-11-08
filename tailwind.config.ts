@@ -26,8 +26,11 @@ const config: Config = {
                white: 'var(--text-primary-white)',
                black: 'var(--text-primary-black)',
                blue: 'var(--text-primary-blue)',
-               error: 'var(--text-primary-error)'
+               error: 'var(--red-primary)'
             }
+         },
+         backgroundColor: {
+            error: 'var(--red-background)'
          },
          textColor: {
             primary: {
