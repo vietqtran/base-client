@@ -8,5 +8,7 @@ export function ThemeProvider({
    children,
    ...props
 }: Readonly<ThemeProviderProps>) {
-   return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+   return <React.Suspense>
+      <NextThemesProvider {...props}>{children}</NextThemesProvider>
+   </React.Suspense> 
 }

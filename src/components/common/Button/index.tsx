@@ -9,7 +9,8 @@ type Props = {
    iconRight?: React.ReactNode
    className?: string
    loading?: boolean
-   type?: 'submit' | 'button'
+   type?: 'submit' | 'button',
+   onClick?: () => void
 }
 
 const CommonButton = ({
@@ -20,10 +21,12 @@ const CommonButton = ({
    iconRight,
    className,
    loading,
-   type = 'button'
+   type = 'button',
+   onClick
 }: Props) => {
    return (
       <div
+         onClick={onClick}
          className={twMerge(
             'rounded-sm h-8 whitespace-nowrap button w-fit',
             color === 'primary' && 'button-primary',

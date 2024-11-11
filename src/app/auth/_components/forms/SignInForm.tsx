@@ -75,7 +75,7 @@ const SignInForm = () => {
                         )}
                         <input
                            className={twMerge(
-                              'h-8 border w-full border-neutral-800 px-2 text-sm outline-none focus:border-[#0073bb] focus:ring-1 focus:ring-[#0073bb]',
+                              'h-8 border w-full bg-transparent border-neutral-800 px-2 text-sm outline-none focus:border-[#0073bb] focus:ring-1 focus:ring-[#0073bb]',
                               errors.email &&
                                  'border-primary-error focus:border-primary-error focus:ring-primary-error'
                            )}
@@ -103,7 +103,7 @@ const SignInForm = () => {
                         )}
                         <input
                            className={twMerge(
-                              'h-8 border w-full border-neutral-800 px-2 text-sm outline-none focus:border-[#0073bb] focus:ring-1 focus:ring-[#0073bb]',
+                              'h-8 border w-full bg-transparent border-neutral-800 px-2 text-sm outline-none focus:border-[#0073bb] focus:ring-1 focus:ring-[#0073bb]',
                               errors.password &&
                                  'border-primary-error focus:border-primary-error focus:ring-primary-error'
                            )}
@@ -124,7 +124,7 @@ const SignInForm = () => {
                      <div className="mt-2 flex items-center gap-1.5">
                         <input
                            onChange={e => setIsShowPassword(e.target.checked)}
-                           className="size-[14px]"
+                           className="size-[14px] bg-white"
                            type="checkbox"
                            id="showPassword"
                            checked={isShowPassword}

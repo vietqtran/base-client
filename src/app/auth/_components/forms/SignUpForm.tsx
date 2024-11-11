@@ -8,6 +8,8 @@ import CommonButton from '@/components/common/Button'
 import ErrorMessageIcon from '@/components/icons/ErrorMessageIcon'
 import { twMerge } from 'tailwind-merge'
 import Link from 'next/link'
+import { useAuth } from '@/hooks/useAuth'
+import ErrorLarge from '@/components/icons/ErrorLarge'
 
 const SignInSchema = z
    .object({
@@ -33,6 +35,7 @@ const SignInSchema = z
 type FormData = z.infer<typeof SignInSchema>
 
 const SignUpForm = () => {
+   const {signUp, isLoading, error} = useAuth()
    const [isShowPassword, setIsShowPassword] = React.useState(false)
 
    const {
@@ -49,11 +52,22 @@ const SignUpForm = () => {
    })
 
    const onSubmit = async (data: FormData) => {
-      console.log(data)
+      await signUp(data)
    }
 
    return (
-      <div className="flex w-full justify-center">
+      <div className="flex w-full flex-col items-center gap-3">
+         {error && (
+            <div className="flex w-[340px] items-start gap-2 border border-primary-error bg-error p-5">
+               <div className="flex-shrink-0 py-0.5">
+                  <ErrorLarge />
+               </div>
+               <div className="flex-1 text-sm">
+                  <div className="mb-1 font-bold">{error?.field}</div>
+                  <div>{error?.message}</div>
+               </div>
+            </div>
+         )}
          <div className="form-shadow block w-[340px]">
             <div className="heading-auth-bg w-full border-b p-5">
                <h1 className="text-lg font-bold">User Sign Up</h1>
@@ -191,6 +205,7 @@ const SignUpForm = () => {
                   </div>
 
                   <CommonButton
+                     loading={isLoading}
                      type="submit"
                      className="w-full"
                      title="Sign up"
