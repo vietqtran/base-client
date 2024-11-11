@@ -18,7 +18,7 @@ export interface SignUpCredentials {
 }
 
 export const useAuth = () => {
-   const {push} = useRouter()
+   const { push } = useRouter()
    const { setCurrentUser } = useAuthStore()
 
    const [isLoading, setIsLoading] = useState(false)

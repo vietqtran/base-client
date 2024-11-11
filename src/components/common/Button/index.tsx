@@ -9,7 +9,7 @@ type Props = {
    iconRight?: React.ReactNode
    className?: string
    loading?: boolean
-   type?: 'submit' | 'button',
+   type?: 'submit' | 'button'
    onClick?: () => void
 }
 

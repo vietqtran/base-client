@@ -53,21 +53,23 @@ export default function AuthLayout({
          <body
             className={`${emberBd.variable} ${emberHe.variable} ${emberLt.variable} ${emberRg.variable} ${emberTh.variable} ${emberMedium.variable} antialiased font-regular`}
          >
-         <div className="bg-auth fixed z-[-1] h-screen w-screen"></div>
-         <div className="h-full w-full text-primary-black">
-            <div className="mx-auto w-full py-5">
-               <div className="pb-8 pt-5">
-                  <Image
-                     src="/images/aws-logo.png"
-                     alt="logo"
-                     width={84}
-                     height={51}
-                     className="mx-auto"
-                  />
+            <div className="bg-auth fixed z-[-1] h-screen w-screen"></div>
+            <div className="h-full w-full text-primary-black">
+               <div className="mx-auto w-full py-5">
+                  <div className="pb-8 pt-5">
+                     <Image
+                        src="/images/aws-logo.png"
+                        alt="logo"
+                        width={84}
+                        height={51}
+                        className="mx-auto"
+                     />
+                  </div>
                </div>
+               <main className="container mx-auto max-h-screen">
+                  {children}
+               </main>
             </div>
-            <main className="container mx-auto max-h-screen">{children}</main>
-         </div>
          </body>
       </html>
    )

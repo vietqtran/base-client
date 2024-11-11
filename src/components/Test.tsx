@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 const Test = () => {
-   const {push, } = useRouter()
+   const { push } = useRouter()
    const { resolvedTheme, setTheme } = useTheme()
    return (
       <div className="flex gap-2 p-10">
@@ -19,13 +19,11 @@ const Test = () => {
          </div>
          <CommonButton
             onClick={() => push('/auth/sign-in')}
-            title='Logout'
+            title="Logout"
             variant="outline"
             color="secondary"
          />
-         <Link  href="/auth/sign-in">
-            Logout
-         </Link>
+         <Link href="/auth/sign-in">Logout</Link>
       </div>
    )
 }

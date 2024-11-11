@@ -54,7 +54,7 @@ export default function RootLayout({
          <body
             className={`${emberBd.variable} ${emberHe.variable} ${emberLt.variable} ${emberRg.variable} ${emberTh.variable} ${emberMedium.variable} antialiased font-regular`}
          >
-             <ThemeProvider
+            <ThemeProvider
                attribute="class"
                defaultTheme="system"
                enableSystem

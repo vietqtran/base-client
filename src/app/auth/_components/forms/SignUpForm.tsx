@@ -35,7 +35,7 @@ const SignInSchema = z
 type FormData = z.infer<typeof SignInSchema>
 
 const SignUpForm = () => {
-   const {signUp, isLoading, error} = useAuth()
+   const { signUp, isLoading, error } = useAuth()
    const [isShowPassword, setIsShowPassword] = React.useState(false)
 
    const {
