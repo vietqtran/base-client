@@ -14,6 +14,7 @@
       --button-secondary: #ffffff;
       --button-hover-primary: #ec7211;
       --button-hover-secondary: #f0f0f0;
+      --button-active-primary: #da690c;
       --button-primary-border-color: #513000;
       --button-secondary-border-color: #545b64;
       --red-primary: #d13212;
@@ -33,6 +34,7 @@
       --button-secondary: #2a2e33;
       --button-hover-primary: #ec7211;
       --button-hover-secondary: #21252c;
+      --button-active-primary: #da690c;
       --button-primary-border-color: #513000;
       --button-secondary-border-color: #879596;
       --button-secondary-border-color-hover: #aab7b8;
@@ -83,7 +85,7 @@
 
 .button-primary {
    background-color: var(--button-primary);
-   @apply text-[var(--text-primary-black)] hover:bg-[var(--button-hover-primary)] border-none;
+   @apply text-[var(--text-primary-black)] hover:bg-[var(--button-hover-primary)] border-none active:bg-[var(--button-active-primary)];
 }
 
 .button-secondary {

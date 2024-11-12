@@ -2,6 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { io } from 'socket.io-client'
+import { useTranslations } from 'next-intl'
+import CommonButton from '@/components/common/Button'
+import Cookies from 'js-cookie'
+import { useRouter } from 'next/navigation'
 
 interface User {
    id: string
@@ -10,6 +14,8 @@ interface User {
 }
 
 export default function Home() {
+   const t = useTranslations('HomePage')
+   const router = useRouter()
    const [isConnected, setIsConnected] = useState(false)
    const [socketError, setSocketError] = useState<string | null>(null)
    const [text, setText] = useState('empty')
@@ -71,11 +77,19 @@ export default function Home() {
             >
                {isConnected ? 'Connected' : 'Disconnected'}
             </span>
-
+            <h1>{t('title')}</h1>
+            <CommonButton
+               title="change lang"
+               onClick={() => {
+                  const newLocale =
+                     Cookies.get('i18next') === 'en' ? 'vi' : 'en'
+                  Cookies.set('i18next', newLocale)
+                  router.refresh()
+               }}
+            />
             {socketError && (
                <div className="mt-2 text-sm text-red-500">{socketError}</div>
             )}
-
             {text}
          </div>
       </div>
