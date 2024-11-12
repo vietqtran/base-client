@@ -7,6 +7,8 @@
          "remember": "このアカウントを記憶する",
          "show-password": "パスワードを表示"
       },
+      "current-lang": "日本語",
+      "lang-key": "ja",
       "fields": {
          "confirm-password": "パスワード確認",
          "email": "メールアドレス",

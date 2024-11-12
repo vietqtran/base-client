@@ -33,7 +33,7 @@ const langs = [
 
 export default function SwitchLang() {
    const { refresh } = useRouter()
-   const t = useTranslations('common.trans.switch')
+   const t = useTranslations()
    const currentLang = Cookies.get('i18next')
 
    const [isOpen, setIsOpen] = useState(false)
@@ -53,8 +53,11 @@ export default function SwitchLang() {
          onClick={() => setIsOpen(!isOpen)}
          className="flex cursor-pointer items-center gap-1"
       >
-         {langs.filter(l => l.key === currentLang || 'en')[0].flag}
-         <span className="text-sm">{t(currentLang)}</span>
+         {t('common.lang-key') === 'vi' && <VnFlag />}
+         {t('common.lang-key') === 'cn' && <CnFlag />}
+         {t('common.lang-key') === 'en' && <UsFlag />}
+         {t('common.lang-key') === 'ja' && <JpFlag />}
+         <span className="text-sm">{t('common.current-lang')}</span>
          <div className="relative">
             <div
                className={`${isOpen ? 'rotate-180' : ''} relative duration-100 ease-linear`}
@@ -79,10 +82,10 @@ export default function SwitchLang() {
                            >
                               {l.flag}
                               <div className="ml-2 flex-1 text-sm">
-                                 {t(l.key)}
+                                 {t(`common.trans.switch.${l.key}`)}
                               </div>
                               {currentLang === l.key && (
-                                 <div>
+                                 <div className="border">
                                     <svg
                                        className="size-4"
                                        xmlns="http://www.w3.org/2000/svg"

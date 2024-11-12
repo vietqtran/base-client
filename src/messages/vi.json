@@ -7,6 +7,8 @@
          "remember": "Lưu tài khoản này",
          "show-password": "Hiển thị mật khẩu"
       },
+      "current-lang": "Tiếng Việt",
+      "lang-key": "vi",
       "fields": {
          "confirm-password": "Xác nhận mật khẩu",
          "email": "Email",

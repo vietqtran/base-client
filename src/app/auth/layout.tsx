@@ -5,7 +5,7 @@ import React from 'react'
 import '../globals.css'
 import { getLocale, getMessages } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
-import SwitchLang from '@/components/common/Lang/SwitchLang'
+import Footer from './_components/Footer'
 
 const emberBd = localFont({
    src: '../fonts/Ember_Bd.ttf',
@@ -58,7 +58,7 @@ export default async function AuthLayout({
          <body
             className={`${emberBd.variable} ${emberHe.variable} ${emberLt.variable} ${emberRg.variable} ${emberTh.variable} ${emberMedium.variable} antialiased font-regular`}
          >
-            <NextIntlClientProvider messages={messages} locale={locale}>
+            <NextIntlClientProvider messages={messages}>
                <div className="bg-auth fixed z-[-1] h-screen w-screen"></div>
                <div className="flex h-full w-full flex-col text-primary-black">
                   <div className="mx-auto w-full py-5">
@@ -75,11 +75,7 @@ export default async function AuthLayout({
                   <main className="container mx-auto max-h-screen pb-12">
                      {children}
                   </main>
-                  <footer className="absolute bottom-0 left-0 right-0 h-12">
-                     <div className="relative flex size-full items-center justify-center">
-                        <SwitchLang />
-                     </div>
-                  </footer>
+                  <Footer />
                </div>
             </NextIntlClientProvider>
          </body>
