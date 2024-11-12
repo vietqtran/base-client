@@ -25,7 +25,10 @@ const SignUpForm = () => {
             .min(1, { message: 'required' })
             .min(3, { message: 'min-length' })
             .max(50, { message: 'max-length' }),
-         password: z.string().min(1, { message: 'required' }),
+         password: z
+            .string()
+            .min(1, { message: 'required' })
+            .min(8, { message: 'min-length' }),
          confirmPassword: z.string().min(1, { message: 'required' })
       })
       .refine(data => data.password === data.confirmPassword, {
@@ -128,6 +131,8 @@ const SignUpForm = () => {
                         <DynamicErrorMessage
                            errorType={errors.username.message ?? ''}
                            field="username"
+                           minLength={3}
+                           maxLength={50}
                         />
                      )}
                   </div>
@@ -155,6 +160,7 @@ const SignUpForm = () => {
                         <DynamicErrorMessage
                            errorType={errors.password.message ?? ''}
                            field="password"
+                           minLength={8}
                         />
                      )}
                   </div>
