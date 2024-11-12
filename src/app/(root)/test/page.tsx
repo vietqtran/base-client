@@ -77,7 +77,7 @@ export default function Home() {
             >
                {isConnected ? 'Connected' : 'Disconnected'}
             </span>
-            <h1>{t('title')}</h1>
+            <h1>{t('title', { name: 'Viet' })}</h1>
             <CommonButton
                title="change lang"
                onClick={() => {

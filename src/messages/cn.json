@@ -1,0 +1,29 @@
+{
+   "common": {
+      "auth": {
+         "buttons": { "sign-in": "登录", "sign-up": "注册" },
+         "go-to-sign-in": "登录现有账户",
+         "go-to-sign-up": "创建新账户",
+         "remember": "记住此账户",
+         "show-password": "显示密码"
+      },
+      "fields": {
+         "confirm-password": "确认密码",
+         "email": "电子邮箱",
+         "password": "密码",
+         "username": "用户名"
+      },
+      "forms": { "sign-in": "登录", "sign-up": "注册" },
+      "show-password": "显示密码",
+      "trans": {
+         "switch": { "cn": "中文", "en": "英语", "ja": "日语", "vi": "越南语" }
+      },
+      "validations": {
+         "invalid-format": "{field}格式无效。",
+         "max-length": "{field}超过{length}个字符。",
+         "min-length": "{field}至少需要{length}个字符。",
+         "not-match": "{field}不匹配。",
+         "required": "请输入{field}。"
+      }
+   }
+}

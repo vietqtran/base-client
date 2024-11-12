@@ -5,36 +5,36 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import CommonButton from '@/components/common/Button'
-import ErrorMessageIcon from '@/components/icons/ErrorMessageIcon'
 import { twMerge } from 'tailwind-merge'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/useAuth'
 import ErrorLarge from '@/components/icons/ErrorLarge'
-
-const SignInSchema = z
-   .object({
-      email: z
-         .string()
-         .min(1, { message: 'Email is required' })
-         .email({ message: 'Invalid email' }),
-      username: z
-         .string()
-         .min(1, { message: 'Username is required' })
-         .min(3, { message: 'Username must be at least 3 characters' })
-         .max(50, { message: 'Username is over 50 characters' }),
-      password: z.string().min(1, { message: 'Password is required' }),
-      confirmPassword: z
-         .string()
-         .min(1, { message: 'Confirm password is required' })
-   })
-   .refine(data => data.password === data.confirmPassword, {
-      message: 'Passwords do not match',
-      path: ['confirmPassword']
-   })
-
-type FormData = z.infer<typeof SignInSchema>
+import { useTranslations } from 'next-intl'
+import DynamicErrorMessage from '@/components/common/Error/DynamicErrorMessage'
 
 const SignUpForm = () => {
+   const t = useTranslations()
+   const SignInSchema = z
+      .object({
+         email: z
+            .string()
+            .min(1, { message: 'required' })
+            .email({ message: 'invalid-format' }),
+         username: z
+            .string()
+            .min(1, { message: 'required' })
+            .min(3, { message: 'min-length' })
+            .max(50, { message: 'max-length' }),
+         password: z.string().min(1, { message: 'required' }),
+         confirmPassword: z.string().min(1, { message: 'required' })
+      })
+      .refine(data => data.password === data.confirmPassword, {
+         message: 'not-match',
+         path: ['confirmPassword']
+      })
+
+   type FormData = z.infer<typeof SignInSchema>
+
    const { signUp, isLoading, error } = useAuth()
    const [isShowPassword, setIsShowPassword] = React.useState(false)
 
@@ -70,7 +70,9 @@ const SignUpForm = () => {
          )}
          <div className="form-shadow block w-[340px]">
             <div className="heading-auth-bg w-full border-b p-5">
-               <h1 className="text-lg font-bold">User Sign Up</h1>
+               <h1 className="text-lg font-bold">
+                  {t('common.forms.sign-up')}
+               </h1>
             </div>
             <div className="w-full bg-white p-5 pb-10">
                <form
@@ -79,7 +81,7 @@ const SignUpForm = () => {
                >
                   <div className="relative flex flex-col">
                      <label className="mb-1.5 w-fit text-sm" htmlFor="email">
-                        Email
+                        {t('common.fields.email')}
                      </label>
                      <div className="relative w-full">
                         {errors.email && (
@@ -97,18 +99,16 @@ const SignUpForm = () => {
                         />
                      </div>
                      {errors.email && (
-                        <div className="mt-1 flex items-center gap-1">
-                           <ErrorMessageIcon />
-                           <span className="text-xs text-primary-error">
-                              {errors.email?.message}
-                           </span>
-                        </div>
+                        <DynamicErrorMessage
+                           errorType={errors.email.message ?? ''}
+                           field="email"
+                        />
                      )}
                   </div>
 
                   <div className="relative flex flex-col">
                      <label className="mb-1.5 w-fit text-sm" htmlFor="username">
-                        Username
+                        {t('common.fields.username')}
                      </label>
                      <div className="relative w-full">
                         {errors.username && (
@@ -125,18 +125,16 @@ const SignUpForm = () => {
                         />
                      </div>
                      {errors.username && (
-                        <div className="mt-1 flex items-center gap-1">
-                           <ErrorMessageIcon />
-                           <span className="text-xs text-primary-error">
-                              {errors.username?.message}
-                           </span>
-                        </div>
+                        <DynamicErrorMessage
+                           errorType={errors.username.message ?? ''}
+                           field="username"
+                        />
                      )}
                   </div>
 
                   <div className="relative flex flex-col">
                      <label className="mb-1.5 w-fit text-sm" htmlFor="email">
-                        Password
+                        {t('common.fields.password')}
                      </label>
                      <div className="relative w-full">
                         {errors.password && (
@@ -154,18 +152,16 @@ const SignUpForm = () => {
                         />
                      </div>
                      {errors.password && (
-                        <div className="mt-1 flex items-center gap-1">
-                           <ErrorMessageIcon />
-                           <span className="text-xs text-primary-error">
-                              {errors.password?.message}
-                           </span>
-                        </div>
+                        <DynamicErrorMessage
+                           errorType={errors.password.message ?? ''}
+                           field="password"
+                        />
                      )}
                   </div>
 
                   <div className="relative flex flex-col">
                      <label className="mb-1.5 w-fit text-sm" htmlFor="email">
-                        Confirm password
+                        {t('common.fields.confirm-password')}
                      </label>
                      <div className="relative w-full">
                         {errors.confirmPassword && (
@@ -183,12 +179,10 @@ const SignUpForm = () => {
                         />
                      </div>
                      {errors.confirmPassword && (
-                        <div className="mt-1 flex items-center gap-1">
-                           <ErrorMessageIcon />
-                           <span className="text-xs text-primary-error">
-                              {errors.confirmPassword?.message}
-                           </span>
-                        </div>
+                        <DynamicErrorMessage
+                           errorType={errors.confirmPassword.message ?? ''}
+                           field="confirm-password"
+                        />
                      )}
                   </div>
                   <div className="flex items-center gap-1.5">
@@ -200,7 +194,7 @@ const SignUpForm = () => {
                         checked={isShowPassword}
                      />
                      <label className="text-sm" htmlFor="showPassword">
-                        Show password
+                        {t('common.auth.show-password')}
                      </label>
                   </div>
 
@@ -208,7 +202,7 @@ const SignUpForm = () => {
                      loading={isLoading}
                      type="submit"
                      className="w-full"
-                     title="Sign up"
+                     title={t('common.auth.buttons.sign-up')}
                   />
                </form>
                <div className="mt-4 text-center">
@@ -216,7 +210,7 @@ const SignUpForm = () => {
                      href="/auth/sign-in"
                      className="text-sm text-[#0073bb] underline-offset-4 hover:underline"
                   >
-                     Sign in to an existing account
+                     {t('common.auth.go-to-sign-in')}
                   </Link>
                </div>
             </div>

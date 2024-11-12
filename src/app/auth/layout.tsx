@@ -5,6 +5,7 @@ import React from 'react'
 import '../globals.css'
 import { getLocale, getMessages } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
+import SwitchLang from '@/components/common/Lang/SwitchLang'
 
 const emberBd = localFont({
    src: '../fonts/Ember_Bd.ttf',
@@ -57,25 +58,30 @@ export default async function AuthLayout({
          <body
             className={`${emberBd.variable} ${emberHe.variable} ${emberLt.variable} ${emberRg.variable} ${emberTh.variable} ${emberMedium.variable} antialiased font-regular`}
          >
-            <div className="bg-auth fixed z-[-1] h-screen w-screen"></div>
-            <div className="h-full w-full text-primary-black">
-               <div className="mx-auto w-full py-5">
-                  <div className="pb-8 pt-5">
-                     <Image
-                        src="/images/aws-logo.png"
-                        alt="logo"
-                        width={84}
-                        height={51}
-                        className="mx-auto"
-                     />
+            <NextIntlClientProvider messages={messages} locale={locale}>
+               <div className="bg-auth fixed z-[-1] h-screen w-screen"></div>
+               <div className="flex h-full w-full flex-col text-primary-black">
+                  <div className="mx-auto w-full py-5">
+                     <div className="pb-8 pt-5">
+                        <Image
+                           src="/images/aws-logo.png"
+                           alt="logo"
+                           width={84}
+                           height={51}
+                           className="mx-auto"
+                        />
+                     </div>
                   </div>
-               </div>
-               <main className="container mx-auto max-h-screen">
-                  <NextIntlClientProvider messages={messages} locale={locale}>
+                  <main className="container mx-auto max-h-screen pb-12">
                      {children}
-                  </NextIntlClientProvider>
-               </main>
-            </div>
+                  </main>
+                  <footer className="absolute bottom-0 left-0 right-0 h-12">
+                     <div className="relative flex size-full items-center justify-center">
+                        <SwitchLang />
+                     </div>
+                  </footer>
+               </div>
+            </NextIntlClientProvider>
          </body>
       </html>
    )

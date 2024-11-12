@@ -1,0 +1,34 @@
+{
+   "common": {
+      "auth": {
+         "buttons": { "sign-in": "ログイン", "sign-up": "登録" },
+         "go-to-sign-in": "既存のアカウントにログイン",
+         "go-to-sign-up": "新規アカウントを作成",
+         "remember": "このアカウントを記憶する",
+         "show-password": "パスワードを表示"
+      },
+      "fields": {
+         "confirm-password": "パスワード確認",
+         "email": "メールアドレス",
+         "password": "パスワード",
+         "username": "ユーザー名"
+      },
+      "forms": { "sign-in": "ログイン", "sign-up": "アカウント登録" },
+      "show-password": "パスワードを表示",
+      "trans": {
+         "switch": {
+            "cn": "中国語",
+            "en": "英語",
+            "ja": "日本語",
+            "vi": "ベトナム語"
+         }
+      },
+      "validations": {
+         "invalid-format": "{field}の形式が無効です。",
+         "max-length": "{field}は{length}文字を超えています。",
+         "min-length": "{field}は{length}文字以上である必要があります。",
+         "not-match": "{field}が一致しません。",
+         "required": "{field}を入力してください。"
+      }
+   }
+}

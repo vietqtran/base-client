@@ -1,5 +1,37 @@
 {
-   "HomePage": {
-      "title": "xin chào!"
+   "common": {
+      "auth": {
+         "buttons": { "sign-in": "Đăng nhập", "sign-up": "Đăng ký" },
+         "go-to-sign-in": "Đăng nhập vào tài khoản hiện có",
+         "go-to-sign-up": "Đăng ký tài khoản mới",
+         "remember": "Lưu tài khoản này",
+         "show-password": "Hiển thị mật khẩu"
+      },
+      "fields": {
+         "confirm-password": "Xác nhận mật khẩu",
+         "email": "Email",
+         "password": "Mật khẩu",
+         "username": "Tên người dùng"
+      },
+      "forms": {
+         "sign-in": "Đăng nhập",
+         "sign-up": "Đăng ký tài khoản"
+      },
+      "show-password": "Hiện mật khẩu",
+      "trans": {
+         "switch": {
+            "cn": "Tiếng Trung",
+            "en": "Tiếng Anh",
+            "ja": "Tiếng Nhật",
+            "vi": "Tiếng Việt"
+         }
+      },
+      "validations": {
+         "invalid-format": "Sai định dạng {field}.",
+         "max-length": "{field} không được quá {length} ký tự.",
+         "min-length": "{field} phải có ít nhất {length} ký tự.",
+         "not-match": "{field} không khớp.",
+         "required": "Vui lòng nhập {field}."
+      }
    }
 }

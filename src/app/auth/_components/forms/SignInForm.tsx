@@ -5,24 +5,25 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import CommonButton from '@/components/common/Button'
-import ErrorMessageIcon from '@/components/icons/ErrorMessageIcon'
 import { twMerge } from 'tailwind-merge'
 import GoogleColorIcon from '@/components/icons/GoogleColorIcon'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/useAuth'
 import ErrorLarge from '@/components/icons/ErrorLarge'
-
-const SignInSchema = z.object({
-   email: z
-      .string()
-      .min(1, { message: 'Email is required' })
-      .email({ message: 'Invalid email' }),
-   password: z.string().min(1, { message: 'Password is required' })
-})
-
-type FormData = z.infer<typeof SignInSchema>
+import { useTranslations } from 'next-intl'
+import DynamicErrorMessage from '@/components/common/Error/DynamicErrorMessage'
 
 const SignInForm = () => {
+   const t = useTranslations()
+   const SignInSchema = z.object({
+      email: z
+         .string()
+         .min(1, { message: 'required' })
+         .email({ message: 'invalid-format' }),
+      password: z.string().min(1, { message: 'required' })
+   })
+   type FormData = z.infer<typeof SignInSchema>
+
    const { isLoading, signIn, error } = useAuth()
    const [isShowPassword, setIsShowPassword] = React.useState(false)
    const [isRemember, setIsRemember] = React.useState(false)
@@ -58,7 +59,9 @@ const SignInForm = () => {
          )}
          <div className="form-shadow block w-[340px]">
             <div className="heading-auth-bg w-full border-b p-5">
-               <h1 className="text-lg font-bold">User Sign In</h1>
+               <h1 className="text-lg font-bold">
+                  {t('common.forms.sign-in')}
+               </h1>
             </div>
             <div className="w-full bg-white p-5">
                <form
@@ -67,7 +70,7 @@ const SignInForm = () => {
                >
                   <div className="relative flex flex-col">
                      <label className="mb-1.5 w-fit text-sm" htmlFor="email">
-                        Email
+                        {t('common.fields.email')}
                      </label>
                      <div className="relative w-full">
                         {errors.email && (
@@ -84,18 +87,16 @@ const SignInForm = () => {
                         />
                      </div>
                      {errors.email && (
-                        <div className="mt-1 flex items-center gap-1">
-                           <ErrorMessageIcon />
-                           <span className="text-xs text-primary-error">
-                              {errors.email?.message}
-                           </span>
-                        </div>
+                        <DynamicErrorMessage
+                           errorType={errors.email.message ?? ''}
+                           field="email"
+                        />
                      )}
                   </div>
 
                   <div className="relative flex flex-col">
                      <label className="mb-1.5 w-fit text-sm" htmlFor="email">
-                        Password
+                        {t('common.fields.password')}
                      </label>
                      <div className="relative w-full">
                         {errors.password && (
@@ -113,12 +114,10 @@ const SignInForm = () => {
                         />
                      </div>
                      {errors.password && (
-                        <div className="mt-1 flex items-center gap-1">
-                           <ErrorMessageIcon />
-                           <span className="text-xs text-primary-error">
-                              {errors.password?.message}
-                           </span>
-                        </div>
+                        <DynamicErrorMessage
+                           errorType={errors.password.message ?? ''}
+                           field="password"
+                        />
                      )}
 
                      <div className="mt-2 flex items-center gap-1.5">
@@ -130,7 +129,7 @@ const SignInForm = () => {
                            checked={isShowPassword}
                         />
                         <label className="text-sm" htmlFor="showPassword">
-                           Show password
+                           {t('common.auth.show-password')}
                         </label>
                      </div>
                   </div>
@@ -139,7 +138,7 @@ const SignInForm = () => {
                      loading={isLoading}
                      type="submit"
                      className="w-full"
-                     title="Sign in"
+                     title={t('common.auth.buttons.sign-in')}
                   />
                   <CommonButton
                      variant="outline"
@@ -153,7 +152,7 @@ const SignInForm = () => {
                      href="/auth/sign-up"
                      className="text-sm text-[#0073bb] underline-offset-4 hover:underline"
                   >
-                     Create a new account
+                     {t('common.auth.go-to-sign-up')}
                   </Link>
                </div>
                <div className="mt-5 flex items-center gap-1.5">
@@ -165,7 +164,7 @@ const SignInForm = () => {
                      checked={isRemember}
                   />
                   <label className="text-sm" htmlFor="remember">
-                     Remember this account
+                     {t('common.auth.remember')}
                   </label>
                </div>
             </div>
