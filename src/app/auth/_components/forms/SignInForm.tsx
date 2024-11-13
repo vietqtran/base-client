@@ -52,8 +52,10 @@ const SignInForm = () => {
                   <ErrorLarge />
                </div>
                <div className="flex-1 text-sm">
-                  <div className="mb-1 font-bold">{error?.field}</div>
-                  <div>{error?.message}</div>
+                  <div className="capitalize-first mb-1 font-bold">
+                     {error?.field}
+                  </div>
+                  <div className="capitalize-first">{error?.message}</div>
                </div>
             </div>
          )}

@@ -46,7 +46,9 @@ const DynamicErrorMessage = ({
    return (
       <div className="mt-1 flex items-center gap-1">
          <ErrorMessageIcon />
-         <span className="text-xs text-primary-error">{getErrorMessage()}</span>
+         <span className="capitalize-first text-xs text-primary-error">
+            {getErrorMessage()}
+         </span>
       </div>
    )
 }
