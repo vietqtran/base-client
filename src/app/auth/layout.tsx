@@ -1,10 +1,12 @@
 import { Metadata } from 'next'
 import localFont from 'next/font/local'
 import Image from 'next/image'
-import React from 'react'
+import React, { Suspense } from 'react'
 import '../globals.css'
 import Footer from './_components/Footer'
 import NextIntlProvider from '@/components/providers/NextIntlProvider'
+import ProtectedRoute from '@/components/providers/ProtectedRoute'
+import ReduxProvider from '@/components/providers/ReduxProvider'
 
 const emberBd = localFont({
    src: '../fonts/Ember_Bd.ttf',
@@ -55,26 +57,32 @@ export default function AuthLayout({
          <body
             className={`${emberBd.variable} ${emberHe.variable} ${emberLt.variable} ${emberRg.variable} ${emberTh.variable} ${emberMedium.variable} antialiased font-regular`}
          >
-            <NextIntlProvider>
-               <div className="bg-auth fixed z-[-1] h-screen w-screen"></div>
-               <div className="flex h-full w-full flex-col text-primary-black">
-                  <div className="mx-auto w-full py-5">
-                     <div className="pb-8 pt-5">
-                        <Image
-                           src="/images/aws-logo.png"
-                           alt="logo"
-                           width={84}
-                           height={51}
-                           className="mx-auto"
-                        />
-                     </div>
-                  </div>
-                  <main className="container mx-auto max-h-screen pb-12">
-                     {children}
-                  </main>
-                  <Footer />
-               </div>
-            </NextIntlProvider>
+            <ReduxProvider>
+               <ProtectedRoute>
+                  <Suspense fallback={null}>
+                     <NextIntlProvider>
+                        <div className="bg-auth fixed z-[-1] h-screen w-screen"></div>
+                        <div className="flex h-full w-full flex-col text-primary-black">
+                           <div className="mx-auto w-full py-5">
+                              <div className="pb-8 pt-5">
+                                 <Image
+                                    src="/images/aws-logo.png"
+                                    alt="logo"
+                                    width={84}
+                                    height={51}
+                                    className="mx-auto"
+                                 />
+                              </div>
+                           </div>
+                           <main className="container mx-auto max-h-screen pb-12">
+                              {children}
+                           </main>
+                           <Footer />
+                        </div>
+                     </NextIntlProvider>
+                  </Suspense>
+               </ProtectedRoute>
+            </ReduxProvider>
          </body>
       </html>
    )

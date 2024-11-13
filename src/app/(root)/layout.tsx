@@ -4,6 +4,8 @@ import '../globals.css'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import NextIntlProvider from '@/components/providers/NextIntlProvider'
 import { Suspense } from 'react'
+import ProtectedRoute from '@/components/providers/ProtectedRoute'
+import ReduxProvider from '@/components/providers/ReduxProvider'
 
 const emberBd = localFont({
    src: '../fonts/Ember_Bd.ttf',
@@ -56,16 +58,20 @@ export default function RootLayout({
          <body
             className={`${emberBd.variable} ${emberHe.variable} ${emberLt.variable} ${emberRg.variable} ${emberTh.variable} ${emberMedium.variable} antialiased font-regular`}
          >
-            <Suspense fallback={null}>
-               <ThemeProvider
-                  attribute="class"
-                  defaultTheme="system"
-                  enableSystem
-                  disableTransitionOnChange
-               >
-                  <NextIntlProvider>{children}</NextIntlProvider>
-               </ThemeProvider>
-            </Suspense>
+            <ReduxProvider>
+               <ProtectedRoute>
+                  <Suspense fallback={null}>
+                     <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                     >
+                        <NextIntlProvider>{children}</NextIntlProvider>
+                     </ThemeProvider>
+                  </Suspense>
+               </ProtectedRoute>
+            </ReduxProvider>
          </body>
       </html>
    )
