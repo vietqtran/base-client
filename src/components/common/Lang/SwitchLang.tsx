@@ -85,7 +85,7 @@ export default function SwitchLang() {
                                  {t(`common.trans.switch.${l.key}`)}
                               </div>
                               {currentLang === l.key && (
-                                 <div className="border">
+                                 <div>
                                     <svg
                                        className="size-4"
                                        xmlns="http://www.w3.org/2000/svg"

@@ -17,10 +17,10 @@ const FormError = ({ cause }: Props) => {
          </div>
          <div className="flex-1 text-sm">
             <div className="capitalize-first mb-1 font-bold">
-               {cause[t('common.lang-key') as LANG_KEYS].field}
+               {cause[t('common.lang-key') as LANG_KEYS]?.field}
             </div>
             <div className="capitalize-first">
-               {cause[t('common.lang-key') as LANG_KEYS].message}
+               {cause[t('common.lang-key') as LANG_KEYS]?.message}
             </div>
          </div>
       </div>

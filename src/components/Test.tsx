@@ -8,12 +8,11 @@ import Link from 'next/link'
 
 const Test = () => {
    const { push } = useRouter()
-   const { resolvedTheme, setTheme } = useTheme()
+   const { setTheme } = useTheme()
    return (
       <div className="flex gap-2 p-10">
          <h1 className="~text-base/3xl">Viet deptrai</h1>
          <div>
-            The current theme is: {resolvedTheme}
             <button onClick={() => setTheme('light')}>Light Mode</button>
             <button onClick={() => setTheme('dark')}>Dark Mode</button>
          </div>
