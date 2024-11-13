@@ -3,6 +3,7 @@ import axios, {
    AxiosInstance,
    InternalAxiosRequestConfig
 } from 'axios'
+import Cookies from 'js-cookie'
 
 interface Tokens {
    accessToken: string
@@ -40,6 +41,8 @@ axiosInstance.interceptors.request.use(
       if (tokens) {
          config.headers.set('Authorization', `Bearer ${tokens.accessToken}`)
       }
+      const language = Cookies.get('i18next')
+      config.headers.set('Response-Language', language ?? 'en')
       return config
    },
    (error: AxiosError) => Promise.reject(error)
@@ -84,7 +87,6 @@ axiosInstance.interceptors.response.use(
             }
          }
       }
-
       return Promise.reject(error)
    }
 )
