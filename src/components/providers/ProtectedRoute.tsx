@@ -20,6 +20,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
       if (user && pathName.startsWith('/auth/')) {
          return replace('/')
       }
+   // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [])
 
    return <Suspense fallback={null}>{children}</Suspense>
