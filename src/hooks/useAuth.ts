@@ -1,6 +1,6 @@
 import { CauseError } from '@/types/common.type'
 import axiosInstance from '@/utils/axios'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/hooks/useRouter'
 import { useState } from 'react'
 import { setUser } from '@/store/auth/authSlice'
 import { useAppDispatch } from './useRedux'

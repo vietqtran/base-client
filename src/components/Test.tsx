@@ -3,7 +3,7 @@
 import React from 'react'
 import CommonButton from '@/components/common/Button'
 import { useTheme } from 'next-themes'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/hooks/useRouter'
 import Link from 'next/link'
 
 const Test = () => {

@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/hooks/useRouter'
 import { useAppSelector } from '@/hooks/useRedux'
+import { RootState } from '@/store'
 
 const withAuth = <P extends object>(
    WrappedComponent: React.ComponentType<P>
 ) => {
    const ComponentWithAuth = (props: P) => {
-      const { user } = useAppSelector(state => state.auth)
+      const { user } = useAppSelector((state: RootState) => state.auth)
       const router = useRouter()
 
       useEffect(() => {

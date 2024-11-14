@@ -1,7 +1,8 @@
 'use client'
 
 import { useAppSelector } from '@/hooks/useRedux'
-import { usePathname, useRouter } from 'next/navigation'
+import { RootState } from '@/store'
+import { usePathname, useRouter } from '@/hooks/useRouter'
 import React, { Suspense, useEffect } from 'react'
 
 interface ProtectedRouteProps {
@@ -9,7 +10,7 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-   const { user } = useAppSelector(state => state.auth)
+   const { user } = useAppSelector((state: RootState) => state.auth)
    const { replace } = useRouter()
    const pathName = usePathname()
    useEffect(() => {
