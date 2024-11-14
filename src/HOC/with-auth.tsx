@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useRouter } from '@/hooks/useRouter'
+import { usePathname, useRouter } from '@/hooks/useRouter'
 import { useAppSelector } from '@/hooks/useRedux'
 import { RootState } from '@/store'
 
@@ -8,17 +8,17 @@ const withAuth = <P extends object>(
 ) => {
    const ComponentWithAuth = (props: P) => {
       const { user } = useAppSelector((state: RootState) => state.auth)
-      const router = useRouter()
-
+      const { replace } = useRouter()
+      const pathName = usePathname()
       useEffect(() => {
-         if (!user) {
-            router.replace('/login')
+         if (!user && !pathName.startsWith('/auth/')) {
+            return replace('/auth/sign-in')
          }
-      }, [user, router])
-
-      if (!user) {
-         return null
-      }
+         if (user && pathName.startsWith('/auth/')) {
+            return replace('/')
+         }
+         // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [])
 
       return <WrappedComponent {...props} />
    }

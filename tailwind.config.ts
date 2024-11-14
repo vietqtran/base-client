@@ -38,7 +38,9 @@ const config: Config = {
             secondary: {
                black: 'var(--background-black-secondary)'
             },
-            heading: 'var(--background-heading)'
+            heading: 'var(--background-heading)',
+            header: 'var(--header-background)',
+            split: 'var(--split-background)'
          },
          textColor: {
             primary: {
