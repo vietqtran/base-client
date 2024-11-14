@@ -61,13 +61,13 @@ const SignUpForm = () => {
    return (
       <div className="flex w-full flex-col items-center gap-3">
          {error && <FormError cause={error} />}
-         <div className="form-shadow block w-[340px]">
-            <div className="heading-auth-bg w-full border-b p-5">
+         <div className="form-shadow block w-[340px] dark:border">
+            <div className="w-full border-b bg-heading p-5">
                <h1 className="text-lg font-bold">
                   {t('common.forms.sign-up')}
                </h1>
             </div>
-            <div className="w-full bg-white p-5 pb-10">
+            <div className="w-full bg-white p-5 pb-10 dark:bg-secondary-black">
                <form
                   className="flex flex-col gap-5"
                   onSubmit={handleSubmit(onSubmit)}
@@ -82,7 +82,7 @@ const SignUpForm = () => {
                         )}
                         <input
                            className={twMerge(
-                              'h-8 border w-full border-neutral-800 px-2 text-sm outline-none focus:border-[#0073bb] focus:ring-1 focus:ring-[#0073bb]',
+                              'h-8 border border-input w-full px-2 text-sm outline-none focus:border-primary-blue focus:ring-1 focus:ring-primary-border-primary-blue',
                               errors.email &&
                                  'border-primary-error focus:border-primary-error focus:ring-primary-error'
                            )}
@@ -109,7 +109,7 @@ const SignUpForm = () => {
                         )}
                         <input
                            className={twMerge(
-                              'h-8 border w-full border-neutral-800 px-2 text-sm outline-none focus:border-[#0073bb] focus:ring-1 focus:ring-[#0073bb]',
+                              'h-8 border border-input w-full px-2 text-sm outline-none focus:border-primary-blue focus:ring-1 focus:ring-primary-border-primary-blue',
                               errors.username &&
                                  'border-primary-error focus:border-primary-error focus:ring-primary-error'
                            )}
@@ -137,7 +137,7 @@ const SignUpForm = () => {
                         )}
                         <input
                            className={twMerge(
-                              'h-8 border w-full border-neutral-800 px-2 text-sm outline-none focus:border-[#0073bb] focus:ring-1 focus:ring-[#0073bb]',
+                              'h-8 border border-input w-full px-2 text-sm outline-none focus:border-primary-blue focus:ring-1 focus:ring-primary-border-primary-blue',
                               errors.password &&
                                  'border-primary-error focus:border-primary-error focus:ring-primary-error'
                            )}
@@ -165,7 +165,7 @@ const SignUpForm = () => {
                         )}
                         <input
                            className={twMerge(
-                              'h-8 border w-full border-neutral-800 px-2 text-sm outline-none focus:border-[#0073bb] focus:ring-1 focus:ring-[#0073bb]',
+                              'h-8 border border-input w-full px-2 text-sm outline-none focus:border-primary-blue focus:ring-1 focus:ring-primary-border-primary-blue',
                               errors.confirmPassword &&
                                  'border-primary-error focus:border-primary-error focus:ring-primary-error'
                            )}
@@ -204,7 +204,7 @@ const SignUpForm = () => {
                <div className="mt-4 text-center">
                   <Link
                      href="/auth/sign-in"
-                     className="text-sm text-[#0073bb] underline-offset-4 hover:underline"
+                     className="text-sm text-primary-blue underline-offset-4 hover:underline"
                   >
                      {t('common.auth.go-to-sign-in')}
                   </Link>

@@ -71,21 +71,21 @@ export default function SwitchLang() {
                      animate={{ opacity: 1, y: 0, x: '-50%' }}
                      exit={{ opacity: 0, y: 20, x: '-50%' }}
                      onClick={e => e.stopPropagation()}
-                     className="absolute bottom-7 left-1/2 w-60 -translate-x-1/2 border bg-[#fafafa] shadow"
+                     className="absolute bottom-7 left-1/2 w-60 -translate-x-1/2 border bg-white shadow dark:bg-secondary-black"
                   >
                      {langs.map((l, i) => {
                         return (
                            <div
                               key={l.key}
                               onClick={() => handleSwitchLang(l.key)}
-                              className={`flex items-center justify-start px-3 py-1.5 hover:bg-slate-100 ${i < langs.length - 1 && 'border-b'}`}
+                              className={`flex items-center justify-start px-3 py-1.5 hover:bg-button-hover-secondary ${i < langs.length - 1 && 'border-b'}`}
                            >
                               {l.flag}
                               <div className="ml-2 flex-1 text-sm">
                                  {t(`common.trans.switch.${l.key}`)}
                               </div>
                               {currentLang === l.key && (
-                                 <div>
+                                 <div className="text-primary-blue">
                                     <svg
                                        className="size-4"
                                        xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@ export default function SwitchLang() {
                                        viewBox="0 0 24 24"
                                     >
                                        <path
-                                          fill="#0073bb"
+                                          fill="currentColor"
                                           d="M9 16.17L5.53 12.7a.996.996 0 1 0-1.41 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71a.996.996 0 1 0-1.41-1.41z"
                                        />
                                     </svg>

@@ -12,7 +12,7 @@ const FormError = ({ cause }: Props) => {
    const t = useTranslations()
    return (
       <div className="flex w-[340px] items-start gap-2 border border-primary-error bg-error p-5">
-         <div className="flex-shrink-0 py-0.5">
+         <div className="flex-shrink-0 py-0.5 text-primary-error">
             <ErrorLarge />
          </div>
          <div className="flex-1 text-sm">
