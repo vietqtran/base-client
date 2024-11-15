@@ -21,6 +21,8 @@
       --red-primary: #d13212;
       --red-background: #fdf3f1;
       --input-background: #ffffff;
+      --header-background: #232f3e;
+      --split-background: #414750;
    }
 
    .dark {
@@ -46,6 +48,8 @@
       --background-black-secondary: #2a2e33;
       --background-heading: #21252c;
       --input-background: #1a2029;
+      --header-background: #232f3e;
+      --split-background: #414750;
    }
 }
 

@@ -94,7 +94,7 @@ const SignInForm = () => {
                         )}
                         <input
                            className={twMerge(
-                              'h-8 border-input border w-full px-2 text-sm outline-none focus:border-primring-primary-blue focus:ring-1 focus:ring-primary-blue',
+                              'h-8 border-input border w-full px-2 text-sm outline-none focus:border-primary-blue focus:ring-1 focus:ring-primary-blue',
                               errors.password &&
                                  'border-primary-error focus:border-primary-error focus:ring-primary-error'
                            )}
