@@ -7,6 +7,8 @@
          "remember": "Remember this account",
          "show-password": "Show password"
       },
+      "current-lang": "English (United States)",
+      "lang-key": "en",
       "fields": {
          "confirm-password": "Confirm password",
          "email": "Email",

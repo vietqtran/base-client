@@ -7,6 +7,8 @@
          "remember": "记住此账户",
          "show-password": "显示密码"
       },
+      "current-lang": "中文",
+      "lang-key": "cn",
       "fields": {
          "confirm-password": "确认密码",
          "email": "电子邮箱",

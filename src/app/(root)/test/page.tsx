@@ -5,7 +5,7 @@ import { io } from 'socket.io-client'
 import { useTranslations } from 'next-intl'
 import CommonButton from '@/components/common/Button'
 import Cookies from 'js-cookie'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/hooks/useRouter'
 
 interface User {
    id: string

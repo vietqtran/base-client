@@ -4,11 +4,13 @@ import { useTranslations } from 'next-intl'
 const DynamicErrorMessage = ({
    errorType,
    field,
-   length
+   minLength,
+   maxLength
 }: {
    errorType: string
    field: string
-   length?: number
+   minLength?: number
+   maxLength?: number
 }) => {
    const t = useTranslations()
 
@@ -25,12 +27,12 @@ const DynamicErrorMessage = ({
          case 'min-length':
             return t('common.validations.min-length', {
                field: t(`common.fields.${field}`),
-               length
+               length: minLength
             })
          case 'max-length':
             return t('common.validations.max-length', {
                field: t(`common.fields.${field}`),
-               length
+               length: maxLength
             })
          case 'not-match':
             return t('common.validations.not-match', {
@@ -42,9 +44,11 @@ const DynamicErrorMessage = ({
    }
 
    return (
-      <div className="mt-1 flex items-center gap-1">
+      <div className="mt-1 flex items-center gap-1 text-primary-error">
          <ErrorMessageIcon />
-         <span className="text-xs text-primary-error">{getErrorMessage()}</span>
+         <span className="capitalize-first text-xs text-primary-error">
+            {getErrorMessage()}
+         </span>
       </div>
    )
 }

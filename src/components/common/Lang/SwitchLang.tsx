@@ -5,7 +5,7 @@ import { UsFlag } from '@/components/icons/flags/US'
 import { VnFlag } from '@/components/icons/flags/VN'
 import Cookies from 'js-cookie'
 import { useTranslations } from 'next-intl'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/hooks/useRouter'
 import React, { useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useClickOutside } from '@/hooks/useClickOutside'
@@ -33,7 +33,7 @@ const langs = [
 
 export default function SwitchLang() {
    const { refresh } = useRouter()
-   const t = useTranslations('common.trans.switch')
+   const t = useTranslations()
    const currentLang = Cookies.get('i18next')
 
    const [isOpen, setIsOpen] = useState(false)
@@ -53,8 +53,11 @@ export default function SwitchLang() {
          onClick={() => setIsOpen(!isOpen)}
          className="flex cursor-pointer items-center gap-1"
       >
-         {langs.filter(l => l.key === currentLang || 'en')[0].flag}
-         <span className="text-sm">{t(currentLang)}</span>
+         {t('common.lang-key') === 'vi' && <VnFlag />}
+         {t('common.lang-key') === 'cn' && <CnFlag />}
+         {t('common.lang-key') === 'en' && <UsFlag />}
+         {t('common.lang-key') === 'ja' && <JpFlag />}
+         <span className="text-sm">{t('common.current-lang')}</span>
          <div className="relative">
             <div
                className={`${isOpen ? 'rotate-180' : ''} relative duration-100 ease-linear`}
@@ -68,21 +71,21 @@ export default function SwitchLang() {
                      animate={{ opacity: 1, y: 0, x: '-50%' }}
                      exit={{ opacity: 0, y: 20, x: '-50%' }}
                      onClick={e => e.stopPropagation()}
-                     className="absolute bottom-7 left-1/2 w-60 -translate-x-1/2 border bg-[#fafafa] shadow"
+                     className="absolute bottom-7 left-1/2 w-60 -translate-x-1/2 border bg-white shadow dark:bg-secondary-black"
                   >
                      {langs.map((l, i) => {
                         return (
                            <div
                               key={l.key}
                               onClick={() => handleSwitchLang(l.key)}
-                              className={`flex items-center justify-start px-3 py-1.5 hover:bg-slate-100 ${i < langs.length - 1 && 'border-b'}`}
+                              className={`flex items-center justify-start px-3 py-1.5 hover:bg-button-hover-secondary ${i < langs.length - 1 && 'border-b'}`}
                            >
                               {l.flag}
                               <div className="ml-2 flex-1 text-sm">
-                                 {t(l.key)}
+                                 {t(`common.trans.switch.${l.key}`)}
                               </div>
                               {currentLang === l.key && (
-                                 <div>
+                                 <div className="text-primary-blue">
                                     <svg
                                        className="size-4"
                                        xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +94,7 @@ export default function SwitchLang() {
                                        viewBox="0 0 24 24"
                                     >
                                        <path
-                                          fill="#0073bb"
+                                          fill="currentColor"
                                           d="M9 16.17L5.53 12.7a.996.996 0 1 0-1.41 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71a.996.996 0 1 0-1.41-1.41z"
                                        />
                                     </svg>

@@ -4,12 +4,13 @@
 
 @layer base {
    :root {
+      --border: #eaeded;
+      --border-input: #697179;
       --text-primary-white: #fafafa;
       --text-primary-black: #16191f;
       --text-primary-blue: #0073bb;
       --text-primary-error: #d13212;
       --text-secondary-black: #545b64;
-      --text-secondary-white: #545b64;
       --button-primary: #ff9900;
       --button-secondary: #ffffff;
       --button-hover-primary: #ec7211;
@@ -19,9 +20,14 @@
       --button-secondary-border-color: #545b64;
       --red-primary: #d13212;
       --red-background: #fdf3f1;
+      --input-background: #ffffff;
+      --header-background: #232f3e;
+      --split-background: #414750;
    }
 
    .dark {
+      --border: #424851;
+      --border-input: #879596;
       --background: #16191f;
       --foreground: #eaeded;
       --text-primary-white: #eaeded;
@@ -29,7 +35,6 @@
       --text-primary-blue: #44b9d6;
       --text-primary-error: #ff5d64;
       --text-secondary-black: #d5dbdb;
-      --text-secondary-white: #d5dbdb;
       --button-primary: #ff9900;
       --button-secondary: #2a2e33;
       --button-hover-primary: #ec7211;
@@ -39,7 +44,12 @@
       --button-secondary-border-color: #879596;
       --button-secondary-border-color-hover: #aab7b8;
       --red-primary: #ff5d64;
-      --red-background: #fdf3f1;
+      --red-background: #270a11;
+      --background-black-secondary: #2a2e33;
+      --background-heading: #21252c;
+      --input-background: #1a2029;
+      --header-background: #232f3e;
+      --split-background: #414750;
    }
 }
 
@@ -53,6 +63,10 @@
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    text-rendering: optimizeLegibility;
+}
+
+input {
+   background-color: var(--input-background);
 }
 
 .font-regular {
@@ -105,4 +119,8 @@
    box-shadow:
       rgba(0, 0, 0, 0.12) 0px 1px 3px,
       rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.capitalize-first::first-letter {
+   text-transform: capitalize;
 }

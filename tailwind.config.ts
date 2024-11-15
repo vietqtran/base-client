@@ -29,8 +29,18 @@ const config: Config = {
                error: 'var(--red-primary)'
             }
          },
+         borderColor: {
+            DEFAULT: 'var(--border)',
+            input: 'var(--border-input)'
+         },
          backgroundColor: {
-            error: 'var(--red-background)'
+            error: 'var(--red-background)',
+            secondary: {
+               black: 'var(--background-black-secondary)'
+            },
+            heading: 'var(--background-heading)',
+            header: 'var(--header-background)',
+            split: 'var(--split-background)'
          },
          textColor: {
             primary: {

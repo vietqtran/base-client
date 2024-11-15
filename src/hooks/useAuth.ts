@@ -1,8 +1,9 @@
-import useAuthStore from '@/store/auth.store'
 import { CauseError } from '@/types/common.type'
 import axiosInstance from '@/utils/axios'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/hooks/useRouter'
 import { useState } from 'react'
+import { setUser } from '@/store/auth/authSlice'
+import { useAppDispatch } from './useRedux'
 
 export interface SignInCredentials {
    email: string
@@ -18,8 +19,8 @@ export interface SignUpCredentials {
 }
 
 export const useAuth = () => {
+   const dispatch = useAppDispatch()
    const { push } = useRouter()
-   const { setCurrentUser } = useAuthStore()
 
    const [isLoading, setIsLoading] = useState(false)
    const [error, setError] = useState<CauseError | null>(null)
@@ -41,7 +42,7 @@ export const useAuth = () => {
                   refreshToken
                })
             )
-            setCurrentUser(data?.data?.user)
+            dispatch(setUser(data?.data?.user))
             setError(null)
             push('/')
          }
