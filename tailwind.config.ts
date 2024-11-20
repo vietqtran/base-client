@@ -25,6 +25,7 @@ const config: Config = {
             primary: {
                white: 'var(--text-primary-white)',
                black: 'var(--text-primary-black)',
+               orange: 'var(--orange-primary)',
                blue: 'var(--text-primary-blue)',
                error: 'var(--red-primary)'
             }
