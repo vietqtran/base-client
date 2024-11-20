@@ -1,13 +1,7 @@
 import React from 'react'
-import Header from '../layout/Header'
 
 const HomePage = () => {
-   return (
-      <>
-         <Header />
-         <div className="h-[2000px]">Content</div>
-      </>
-   )
+   return <div className="h-[2000px] container mx-auto">Content</div>
 }
 
 export default HomePage

@@ -64,7 +64,7 @@ const SearchInput = ({ className }: Props) => {
             value={value}
             onChange={e => setValue(e.target.value)}
             className={twMerge(
-               'h-7 border-input placeholder:italic border w-full pr-7 pl-9 text-sm outline-none focus:border-primary-blue',
+               'h-7 border-input bg-primary-black placeholder:italic border w-full pr-7 pl-9 text-sm outline-none focus:border-primary-blue',
                className
             )}
             placeholder="Search"
