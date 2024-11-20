@@ -4,6 +4,7 @@ import { useRouter } from '@/hooks/useRouter'
 import { useState } from 'react'
 import { setUser } from '@/store/auth/authSlice'
 import { useAppDispatch } from './useRedux'
+import { Tokens } from '@/types/auth.type'
 
 export interface SignInCredentials {
    email: string
@@ -83,10 +84,34 @@ export const useAuth = () => {
       }
    }
 
+   const refreshToken = async () => {
+      try {
+         const tokens : Tokens | null = localStorage.getItem('tokens') ? JSON.parse(localStorage.getItem('tokens') as string) : null
+         if(!tokens) throw new Error('No refresh token available')
+         const { data } = await axiosInstance.post('/auth/refresh-token', {
+            refreshToken: tokens.refreshToken
+         })
+         console.log('refresh token data', data);
+         if (data) {
+            dispatch(setUser(data?.data?.user))
+            setError(null)
+         }
+      } catch (e: any) {
+         const error = e?.response?.data?.cause
+            ? e.response.data.cause
+            : {
+                 field: 'Authentication failed',
+                 message: e?.response?.data?.message || 'An error occurred'
+              }
+         setError(error)
+      }
+   }
+
    return {
       isLoading,
       error,
       signIn,
-      signUp
+      signUp,
+      refreshToken
    }
 }
