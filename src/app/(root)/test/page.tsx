@@ -6,6 +6,8 @@ import { useTranslations } from 'next-intl'
 import CommonButton from '@/components/common/Button'
 import Cookies from 'js-cookie'
 import { useRouter } from '@/hooks/useRouter'
+import { startAuthentication, startRegistration } from '@simplewebauthn/browser'
+import axiosInstance from '@/utils/axios'
 
 interface User {
    id: string
@@ -14,11 +16,10 @@ interface User {
 }
 
 export default function Home() {
-   const t = useTranslations('HomePage')
+   const t = useTranslations('')
    const router = useRouter()
    const [isConnected, setIsConnected] = useState(false)
    const [socketError, setSocketError] = useState<string | null>(null)
-   const [text, setText] = useState('empty')
    useEffect(() => {
       const socket = io('http://localhost:8000', {
          reconnectionAttempts: 5,
@@ -42,8 +43,6 @@ export default function Home() {
       })
 
       socket.on('userCreated', (user: User) => {
-         console.log('User created:', user)
-         setText(JSON.stringify(user, null, 2))
          if (
             'Notification' in window &&
             Notification.permission === 'granted'
@@ -63,6 +62,54 @@ export default function Home() {
       }
    }, [])
 
+   const registerPasskey = async () => {
+      try {
+         const passkey = await axiosInstance.post(
+            '/passkey/start-registration',
+            { email: 'johndoe@gmail.com' }
+         )
+         const response = await startRegistration({
+            optionsJSON: passkey.data.data
+         })
+
+         const verifyRes = await axiosInstance.post(
+            '/passkey/verify-registration',
+            {
+               response,
+               challenge: passkey.data.data.challenge,
+               email: 'johndoe@gmail.com'
+            }
+         )
+         console.log(verifyRes.data)
+      } catch (error) {
+         console.log(error)
+      }
+   }
+
+   const authenticatePasskey = async () => {
+      try {
+         const passkey = await axiosInstance.post(
+            '/passkey/start-authentication',
+            { email: 'johndoe@gmail.com' }
+         )
+         const response = await startAuthentication({
+            optionsJSON: passkey.data.data
+         })
+
+         const verifyRes = await axiosInstance.post(
+            '/passkey/verify-authentication',
+            {
+               response,
+               challenge: passkey.data.data.challenge,
+               email: 'johndoe@gmail.com'
+            }
+         )
+         console.log(verifyRes.data)
+      } catch (error) {
+         console.log(error)
+      }
+   }
+
    return (
       <div className="mx-auto max-w-3xl p-4">
          <h1 className="mb-4 text-2xl font-bold">Real-time User Creation</h1>
@@ -77,7 +124,7 @@ export default function Home() {
             >
                {isConnected ? 'Connected' : 'Disconnected'}
             </span>
-            <h1>{t('title', { name: 'Viet' })}</h1>
+            <h1>{t('common.current-lang', { name: 'Viet' })}</h1>
             <CommonButton
                title="change lang"
                onClick={() => {
@@ -90,8 +137,10 @@ export default function Home() {
             {socketError && (
                <div className="mt-2 text-sm text-red-500">{socketError}</div>
             )}
-            {text}
          </div>
+
+         <CommonButton title="Add passkey" onClick={registerPasskey} />
+         <CommonButton title="Auth passkey" onClick={authenticatePasskey} />
       </div>
    )
 }
