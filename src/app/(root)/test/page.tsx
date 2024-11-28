@@ -64,10 +64,7 @@ export default function Home() {
 
    const registerPasskey = async () => {
       try {
-         const passkey = await axiosInstance.post(
-            '/passkey/start-registration',
-            { email: 'johndoe@gmail.com' }
-         )
+         const passkey = await axiosInstance.get('/passkey/start-registration')
          const response = await startRegistration({
             optionsJSON: passkey.data.data
          })
@@ -76,8 +73,7 @@ export default function Home() {
             '/passkey/verify-registration',
             {
                response,
-               challenge: passkey.data.data.challenge,
-               email: 'johndoe@gmail.com'
+               challenge: passkey.data.data.challenge
             }
          )
          console.log(verifyRes.data)
@@ -88,9 +84,8 @@ export default function Home() {
 
    const authenticatePasskey = async () => {
       try {
-         const passkey = await axiosInstance.post(
-            '/passkey/start-authentication',
-            { email: 'johndoe@gmail.com' }
+         const passkey = await axiosInstance.get(
+            '/passkey/start-authentication'
          )
          const response = await startAuthentication({
             optionsJSON: passkey.data.data
@@ -100,8 +95,7 @@ export default function Home() {
             '/passkey/verify-authentication',
             {
                response,
-               challenge: passkey.data.data.challenge,
-               email: 'johndoe@gmail.com'
+               challenge: passkey.data.data.challenge
             }
          )
          console.log(verifyRes.data)
