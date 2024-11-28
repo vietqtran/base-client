@@ -86,12 +86,13 @@ export const useAuth = () => {
 
    const refreshToken = async () => {
       try {
-         const tokens : Tokens | null = localStorage.getItem('tokens') ? JSON.parse(localStorage.getItem('tokens') as string) : null
-         if(!tokens) throw new Error('No refresh token available')
+         const tokens: Tokens | null = localStorage.getItem('tokens')
+            ? JSON.parse(localStorage.getItem('tokens') as string)
+            : null
+         if (!tokens) throw new Error('No refresh token available')
          const { data } = await axiosInstance.post('/auth/refresh-token', {
             refreshToken: tokens.refreshToken
          })
-         console.log('refresh token data', data);
          if (data) {
             dispatch(setUser(data?.data?.user))
             setError(null)
@@ -107,11 +108,28 @@ export const useAuth = () => {
       }
    }
 
+   const me = async () => {
+      try {
+         const { data } = await axiosInstance.get('/auth/me')
+         if (data.status === 'success' && !!data.data) {
+            dispatch(setUser(data?.data))
+            return data.data
+         }
+         dispatch(setUser(null))
+         return null
+      } catch (e: any) {
+         console.log(e)
+         dispatch(setUser(null))
+         return null
+      }
+   }
+
    return {
       isLoading,
       error,
       signIn,
       signUp,
-      refreshToken
+      refreshToken,
+      me
    }
 }

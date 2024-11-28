@@ -1,25 +1,28 @@
 'use client'
 
-import { useAppSelector } from '@/hooks/useRedux'
-import { RootState } from '@/store'
 import { usePathname, useRouter } from '@/hooks/useRouter'
 import React, { Suspense, useEffect } from 'react'
+import { useAuth } from '@/hooks/useAuth'
 
 interface ProtectedRouteProps {
    children: React.ReactNode
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-   const { user } = useAppSelector((state: RootState) => state.auth)
    const { replace } = useRouter()
    const pathName = usePathname()
+   const { me } = useAuth()
+
    useEffect(() => {
-      if (!user && !pathName.startsWith('/auth/')) {
-         return replace('/auth/sign-in')
+      const checkAuth = async () => {
+         const data = await me()
+         if (!data && !pathName.startsWith('/auth/')) {
+            replace('/auth/sign-in')
+         } else if (data && pathName.startsWith('/auth/')) {
+            replace('/')
+         }
       }
-      if (user && pathName.startsWith('/auth/')) {
-         return replace('/')
-      }
+      checkAuth()
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [])
 
